@@ -103,7 +103,7 @@ export default function Home() {
 
           </div>
 
-          <div className="col3 col-span-2 ">
+          <div className="col3 col-span-2 p-5 ">
 
             <RightNav/>
           </div>

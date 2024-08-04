@@ -2,7 +2,7 @@ import 'dotenv/config'
 import express from "express";
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-
+import { User } from './user';
 export async function server_init(){
 
     const app = express();
@@ -12,14 +12,15 @@ export async function server_init(){
 
     const grapqlServer = new ApolloServer({
         typeDefs :`
+        ${User.types}
         type Query {
-            sayHello : String
+            ${User.queries}
         }
         
         `,
         resolvers :{
             Query : {
-                sayHello : ()=> 'hello'
+               ...User.resolvers.queries
             },
             
         },
