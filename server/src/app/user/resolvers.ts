@@ -32,7 +32,7 @@ const queries = {
         const { data } = await axios.get<GoogleTokenResult>(googleOauthURL.toString(),{
             responseType : "json"
         });
-        console.log(data);
+        // console.log("line 35 ",data);
         // checking for user in database
         const userInfo = await prisma.user.findUnique({
             where : {
@@ -59,14 +59,15 @@ const queries = {
         })
 
         if(!userInDb ){
+            // console.log("error!!!");
             throw new Error(`user not found with this ${data?.email} email`);
         }
-        console.log(userInDb);
+        // console.log("line 64 ",userInDb);
             
         // generating jwt token
         const userToken = JwtTokenGenerator.generateToken(userInDb);
 
-        console.log(userToken);
+        // console.log("line 69 ",userToken);
         return userToken;
     }
 }
